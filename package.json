@@ -1,0 +1,28 @@
+{
+  "name": "material-api",
+  "version": "1.0.0",
+  "description": "DailyPartners - Serverless API for materials.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krestech/material-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krestech/material-api/issues"
+  },
+  "homepage": "https://github.com/krestech/material-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.9"
+  },
+  "devDependencies": {
+    "serverless-offline": "^5.12.1"
+  }
+}
