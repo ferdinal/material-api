@@ -21,14 +21,18 @@ const Schema = new mongoose.Schema(
         required: [true, "weight.unit 0"]
       }
     },
-    stock: {
-      orderMultiplier: {
+    order: {
+      multiplier: {
         type: Number,
         required: [true, "stock.orderMultiplier 0"]
       },
-      minimumOrder: {
+      minimum: {
         type: Number,
         required: [true, "stock.minimumOrder 0"]
+      },
+      maximum: {
+        type: Number,
+        required: [true, "stock.maximumOrder 0"]
       }
     },
     price: {
