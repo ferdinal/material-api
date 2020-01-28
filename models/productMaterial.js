@@ -10,16 +10,10 @@ const Schema = new mongoose.Schema(
       type: String,
       required: [true, "image 0"]
     },
-    weight: {
-      value: {
-        type: Number,
-        required: [true, "weight.value 0"]
-      },
-      unit: {
-        type: String,
-        enum: ["gram", "serving", "mililiter"],
-        required: [true, "weight.unit 0"]
-      }
+    unit: {
+      type: String,
+      enum: ["gram", "serving", "mililiter"],
+      required: [true, "weight.unit 0"]
     },
     order: {
       multiplier: {
