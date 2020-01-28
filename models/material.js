@@ -4,7 +4,8 @@ const Schema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "name 0"]
+      required: [true, "name 0"],
+      unique: true
     },
     image: {
       type: String,
@@ -26,7 +27,7 @@ const Schema = new mongoose.Schema(
       },
       maximum: {
         type: Number,
-        required: [true, "stock.maximumOrder 0"]
+        required: false
       }
     },
     price: {
@@ -38,6 +39,12 @@ const Schema = new mongoose.Schema(
         type: Number,
         required: [true, "sellingPrice 0"]
       }
+    },
+    flag: {
+      isDeleted: {
+        type: Boolean,
+        default: false
+      }
     }
   },
   {
@@ -45,6 +52,6 @@ const Schema = new mongoose.Schema(
   }
 );
 
-global.ProductMaterialSchema =
-  global.ProductMaterialSchema || mongoose.model("ProductMaterial", Schema);
-module.exports = global.ProductMaterialSchema;
+global.MaterialSchema =
+  global.MaterialSchema || mongoose.model("ProductMaterial", Schema);
+module.exports = global.MaterialSchema;

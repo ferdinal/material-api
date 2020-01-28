@@ -1,0 +1,55 @@
+org: senecamanu
+service: dailypartners-material
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  timeout: 15
+  region: ap-southeast-1
+  environment:
+    JWT_SECRET: ${file(./env.json):JWT_SECRET}
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    port: 4202
+
+functions:
+  getMaterials:
+    handler: handler.getMaterials
+    events:
+      - http:
+          path: /
+          method: GET
+          cors: true
+  getMaterial:
+    handler: handler.getMaterial
+    events:
+      - http:
+          path: /{id}
+          method: GET
+          cors: true
+  createMaterial:
+    handler: handler.createMaterial
+    events:
+      - http:
+          path: /
+          method: POST
+          cors: true
+  editMaterial:
+    handler: handler.editMaterial
+    events:
+      - http:
+          path: /{id}
+          method: PUT
+          cors: true
+  deleteMaterial:
+    handler: handler.deleteMaterial
+    events:
+      - http:
+          path: /{id}
+          method: DELETE
+          cors: true
