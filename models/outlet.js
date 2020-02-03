@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const OutletStock = require("./outletStock");
 
 const Schema = new mongoose.Schema(
   {
@@ -35,12 +36,31 @@ const Schema = new mongoose.Schema(
         type: Boolean,
         default: false
       }
+    },
+    outletStock: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "OutletStock",
+      required: [true, "outletStock 0"]
     }
   },
   {
     timestamps: true
   }
 );
+
+Schema.pre("validate", async function(next) {
+  if (this.isNew) {
+    const targetOutletStock = await new OutletStock({
+      stocks: [],
+      outlet: this._id
+    }).save();
+
+    this.outletStock = targetOutletStock._id;
+    next();
+  } else {
+    next();
+  }
+});
 
 global.OutletSchema = global.OutletSchema || mongoose.model("Outlet", Schema);
 module.exports = global.OutletSchema;

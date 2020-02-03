@@ -8,28 +8,7 @@ module.exports = (event, context, callback) => {
     dbConnect().then(async () => {
       const newMaterialBody = JSON.parse(event.body);
 
-      let {
-        name,
-        image,
-        unit,
-        order: { multiplier, minimum, maximum },
-        price: { cogs, sellingPrice }
-      } = newMaterialBody;
-
-      let newMaterial = await new Material({
-        name,
-        image,
-        unit,
-        order: {
-          multiplier,
-          minimum,
-          maximum
-        },
-        price: {
-          cogs,
-          sellingPrice
-        }
-      });
+      let newMaterial = await new Material(newMaterialBody);
 
       await newMaterial.save();
 
